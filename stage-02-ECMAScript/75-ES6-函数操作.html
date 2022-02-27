@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script id="默认参数">
+    function logPerson(name, sex = '男', age = 20) {
+        console.log(name);
+        console.log(sex);
+        console.log(age);
+    }
+    logPerson();
+</script>
+
+<script id="延展">
+    let logName = function (arg1, ...arg2) {
+        console.log(arg1,arg2);
+    };
+    logName('张三','李四','王五');
+</script>
+
+<script id="箭头函数">
+    let nameArr = ['张三','李四','王五'];
+    nameArr.forEach((index,value,array) => {
+        console.log(index,value,array);
+    });
+
+    //如果只取value,可以用以下写法
+    nameArr.forEach(value => console.log(value));
+</script>
+
+</body>
+</html>

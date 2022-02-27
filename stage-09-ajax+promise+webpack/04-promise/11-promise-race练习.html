@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise-race方法</title>
+</head>
+<body>
+<script>
+    let url = "http://www.it666.com/files/system/block_picture_1555415767.png";
+    function loadImage(url) {
+        return new Promise(function (resolve, reject) {
+            let oImg = new Image();
+            setTimeout(function () {
+                oImg.src = url;
+            }, 5000);
+            oImg.onload = function () {
+                resolve(oImg);
+            }
+            oImg.onerror = function () {
+                reject("图片加载失败了");
+            }
+        });
+    }
+    function timeout() {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                reject("超时了");
+            }, 3000);
+        });
+    }
+    Promise.race([loadImage(url), timeout()]).then(function (value) {
+        console.log("成功", value);
+    }).catch(function (e) {
+        console.log("失败", e);
+    });
+</script>
+</body>
+</html>

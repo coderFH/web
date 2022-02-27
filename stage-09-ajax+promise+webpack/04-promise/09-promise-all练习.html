@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise-all方法</title>
+</head>
+<body>
+<script>
+    let arr = [
+        "http://www.it666.com/files/system/block_picture_1555415767.png",
+        "http://www.it666.com/files/system/block_picture_1555422597.jpg",
+        "http://www.it666.com/files/system/block_picture_1555419713.jpg"
+    ];
+
+    function loadImage(url) {
+        return new Promise(function (resolve, reject) {
+            let oImg = new Image();
+            let time = Math.random() * 1000;
+            // console.log(time);
+            setTimeout(function () {
+                oImg.src = url;
+            }, time);
+            // oImg.src = url;
+            oImg.onload = function () {
+                resolve(oImg);
+            }
+            oImg.onerror = function () {
+                reject("图片加载失败了");
+            }
+        });
+    }
+    
+    /*
+    需求:
+        1.无序加载图片, 每加载成功一张就添加一张
+    */
+    for(let i = 0; i < arr.length; i++){
+        loadImage(arr[i]).then(function (oImg) {
+            console.log(i);
+            document.body.appendChild(oImg);
+        }, function (msg) {
+            console.log(msg);
+        });
+    }
+
+    /*
+    需求:
+        1.无序加载图片, 只有所有图片都加载成功才添加, 有一张图片失败都不添加
+    */
+    Promise.all([loadImage(arr[0]), loadImage(arr[1]),loadImage(arr[2])])
+        .then(function (result) {
+            // console.log(result);
+            result.forEach(function (oImg) {
+                document.body.appendChild(oImg);
+            });
+        })
+        .catch(function (e) {
+            console.log(e);
+        });
+</script>
+</body>
+</html>

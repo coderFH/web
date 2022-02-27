@@ -1,0 +1,267 @@
+* {
+    /*吧所有的边距清空*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 3000px;
+}
+
+/******************************头部******************************/
+#header {
+    height: 32px;
+    border-bottom: 1px solid #ebebeb;
+    /*background-color: red;*/
+}
+
+#header a {
+    color: #555;
+    font-size: 13px;
+}
+
+#header .header-left {
+    width: 270px;
+    height: 32px;
+    float: left;
+    line-height: 32px;
+}
+
+#header .header-left a {
+    margin-left: 5px;
+}
+
+#header .header-right {
+    width: 590px;
+    height: 32px;
+    float: right;
+    line-height: 32px;
+    /*文字右对齐*/
+    text-align: right;
+}
+
+#header .header-right a {
+    margin-left: 15px;
+    font-weight: bolder;
+}
+
+#header .header-right a.more-product {
+    display: inline-block;
+    background-color: #398bfb;
+    width: 86px;
+    height: 32px;
+    line-height: 32px;
+    vertical-align: top;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+}
+
+/******************************头部******************************/
+
+/******************************内容******************************/
+#content {
+    /*background-color: red;*/
+    width: 641px;
+    margin: 20px auto;
+}
+
+#content .content-logo {
+    width: 641px;
+    text-align: center;
+
+}
+
+#content .content-logo img {
+    width: 270px;
+    height: 112px;
+}
+
+#content .content-search {
+    /*background-color: green;*/
+    width: 641px;
+    height: 77px;
+    padding-top: 10px;
+}
+
+#content .content-search form {
+    background-color: red;
+    height: 40px;
+    width: 641px;
+}
+
+#content .content-search form .search-input {
+    width: 536px;
+    height: 40px;
+    border: 1px solid #b8b8b8;
+    float: left;
+    padding-left: 10px;
+}
+
+#content .content-search form .search-input:focus {
+    /*去除外边框*/
+    outline: none;
+    border-color: #398bfb;
+}
+
+#content .content-search form .search-submit {
+    width: 105px;
+    height: 40px;
+    background-color: #398bfb;
+    border: none;
+    float: left;
+    color: #fff;
+    font-size: 16px;
+}
+
+/******************************内容******************************/
+
+/******************************列表******************************/
+#list {
+    width: 893px;
+    height: 600px;
+    border: 1px solid #ebebeb;
+    margin: 0 auto;
+}
+
+#list .list-header {
+    width: 893px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+#list .list-header .list-header-left {
+    float: left;
+    /*解决空格留白问题*/
+    font-size: 0;
+}
+
+#list .list-header .list-header-left a {
+    /*改变标签的类型*/
+    display: inline-block;
+    /*background-color: red;*/
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding: 0 10px;
+
+    text-decoration: none;
+    color: #555555;
+    vertical-align: top;
+}
+
+#list .list-header .list-header-left a img {
+    vertical-align: middle;
+}
+
+#list .list-header .list-header-left a span {
+    vertical-align: middle;
+}
+
+#list .list-header .list-header-left a:hover {
+    background-color: #ccc;
+}
+
+#list .list-header .list-header-right {
+    float: right;
+    padding-right: 10px;
+}
+
+#list .list-header .list-header-right img {
+    vertical-align: middle;
+}
+
+#list .list-body {
+
+}
+
+#list .list-body .list-body-left {
+    width: 575px;
+    height: 600px;
+    /*background-color: red;*/
+    padding: 10px 5px;
+    float: left;
+}
+
+#list .list-body .list-body-left .content-cell1{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+#list .list-body .list-body-left .content-cell1 h3{
+    margin-bottom: 10px;
+}
+
+#list .list-body .list-body-left p{
+    margin: 10px 0;
+    color: #666666;
+    font-size: 12px;
+}
+
+#list .list-body .list-body-left .content-cell2{
+    height: 160px;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+}
+
+#list .list-body .list-body-left .content-cell2 .cell-img{
+    float: left;
+    width: 180px;
+    height: 120px;
+}
+
+#list .list-body .list-body-left .content-cell2  .cell-content{
+    width: 350px;
+    padding: 20px;
+    float: left;
+}
+
+
+/*右边*/
+#list .list-body-right{
+    width: 315px;
+    height: 600px;
+    float: right;
+    /*background-color: red;*/
+}
+
+#list .list-body-right .right-top{
+    height: 60px;
+    width: 315px;
+    /*background-color: green;*/
+    padding: 20px;
+}
+
+#list .list-body-right .right-top h4{
+    float: left;
+}
+
+#list .list-body-right .right-top div{
+    float: right;
+}
+
+#list .list-body-right .right-top div img{
+    vertical-align: middle;
+}
+
+#list .list-body-right .right-top div span{
+    vertical-align: middle;
+}
+
+#list .list-body-right .right-body{
+    padding: 0 20px;
+}
+
+#list .list-body-right .right-body li{
+    list-style: none;
+    /*background-color: red;*/
+    float: left;
+    width: 130px;
+    height: 40px;
+    line-height: 40px;
+    color: #666666;
+    font-size: 14px;
+}
+/******************************列表******************************/
