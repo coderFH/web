@@ -4,9 +4,24 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 配置安全策略,不允许加载外部的js文件 -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
   <title>Document</title>
+  <script src="./renderer/renderer.js"></script>
+  <script src="./renderer/rightKeyMenu.js"></script>
+  <link rel="stylesheet" href="./css/base.css">
 </head>
 <body>
   <h2>这是一个electron项目</h2>
+  <button id="openFile">打开</button>
+  <button id="openNewWindow">打开一个新窗口</button>
+  <input />
+  <div id="content"></div>
+
+  <hr>
+
+  <div id="drop">
+  </div>
+
 </body>
 </html>
