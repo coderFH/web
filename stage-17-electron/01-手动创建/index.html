@@ -8,20 +8,13 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
   <title>Document</title>
   <script src="./renderer/renderer.js"></script>
-  <script src="./renderer/rightKeyMenu.js"></script>
   <link rel="stylesheet" href="./css/base.css">
 </head>
 <body>
   <h2>这是一个electron项目</h2>
-  <button id="openFile">打开</button>
-  <button id="openNewWindow">打开一个新窗口</button>
-  <input />
-  <div id="content"></div>
-
-  <hr>
-
-  <div id="drop">
-  </div>
-
+  <input placeholder="可以复制粘贴试试"/>
+  <button id="openFile">渲染进程访问node模块</button>
+  <button id="drop">拖拽功能</button>
+  <button id="openNewWindow">查看右键弹出菜单功能</button>
 </body>
 </html>

@@ -1,7 +1,5 @@
 // 右键菜单功能
-
-const remote = require('@electron/remote')
-const { Menu } = remote;
+const { ipcMain, BrowserWindow, Menu } = require('electron');
 
 //创建菜单模板
 const menuTemplate = [
@@ -56,11 +54,9 @@ const menuTemplate = [
 
 const menuBuild = Menu.buildFromTemplate(menuTemplate);
 
-window.onload = () => {
-  window.addEventListener('contextmenu', (e) => {
-    console.log('鼠标点击了右键');
-    e.preventDefault();
-    menuBuild.popup({window:remote.getCurrentWebContents()})
-  },false)
-}
-
+ipcMain.on('showcontextmenu', () => {
+  // 主进程中获取当前窗口的方法:BrowserWindow.getFocusedWindow()
+  // 渲染进程中获取当前窗口的方法: remote.getCurrentWindow()
+  menuBuild.popup({window:BrowserWindow.getFocusedWindow()});
+});
+ 

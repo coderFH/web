@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 配置安全策略,不允许加载外部的js文件 -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+  <title>Document</title>
+  <script src="./renderer/renderer.js"></script>
+  <link rel="stylesheet" href="./css/base.css">
+</head>
+<body>
+  <button id="sendMsg">渲染进程执行主进程里的方法(异步)</button>
+  <br>
+  <button id="sendMsgReplay">渲染进程执行主进程里面的方法,主进程给渲染进程反馈结果(异步)</button>
+  <br>
+  <button id="senMsgSync">渲染进程和主进程通信(同步) </button>
+</body>
+</html>
