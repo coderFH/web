@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@next"></script>
+  <div id="app"></div>
+  <template id="my-app">
+    
+    <!-- 1. lazy修饰符 -->
+    <input type="text" v-model.lazy="message">
+    <hr>
+
+    <!-- 2.number修饰符 -->
+    <!-- v-model绑定的数据默认都是字符串类型,通过number,让其实number类型 -->
+    <input type="text" v-model.number="message">
+    <h2>{{message}}</h2>
+    <button @click="showType">查看结果</button>
+    <hr>
+
+    <!-- 3.trim修饰符 -->
+    <!-- 去除用户在输入框中输入的前后空格 -->
+    <input type="text" v-model.trim="info">
+    <button @click="showResult">查看结果</button>
+
+  </template>
+  <script>
+    const App = {
+      template:'#my-app',
+      data() {
+        return {
+          message: 100,
+          info:'hello world'
+        }
+      },
+      methods: {
+        showType() {
+          console.log(this.message, typeof this.message);
+        },
+        showResult() {
+          console.log(this.info);
+        }
+      }
+    }
+    Vue.createApp(App).mount('#app');
+  </script>
+</body>
+</html>
