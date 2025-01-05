@@ -8,9 +8,9 @@ export default function Login() {
   const onFinish = async (values: ILoginParams ) => {
       const data = await api.login(values);
       storage.set('token', data);
-      // window.location.href = '/';
+      window.location.href = '/';
       console.log('Success:', data);
-  };
+  }; 
 
   return (
     <div className={styles.login}>
