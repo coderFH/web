@@ -11,14 +11,17 @@ export default function Depth() {
         openModal: (type: string, data?: IDept | { parentId: string }) => void;
     }>(null);
     const [data, setData] = useState<IDept[]>([]);
+    const [loading, setLoading] = useState(false); // // 用来控制加载状态
     const [form] = Form.useForm();
     useEffect(() => {
         getDepthData();
     }, []);
     // 获取部门列表
     const getDepthData = async () => {
-        const data = await api.getDeptList(form.getFieldsValue());
-        setData(data);
+      setLoading(true);
+      const data = await api.getDeptList(form.getFieldsValue());
+      setData(data);
+      setLoading(false);
     };
     const columns: TableColumnsType<IDept> = [
         {
@@ -137,7 +140,7 @@ export default function Depth() {
                         <Button onClick={handleCreate}>新增</Button>
                     </div>
                 </div>
-                <Table rowKey="_id" columns={columns} dataSource={data} />
+                <Table rowKey="_id" columns={columns} dataSource={data} loading={loading}/>
             </div>
             <CreateDept mref={deptRef} update={getDepthData} />
         </div>

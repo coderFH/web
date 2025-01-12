@@ -11,14 +11,17 @@ export default function Menu() {
         openModal: (type: string, data?: IMenu | { parentId: string }) => void;
     }>(null);
     const [data, setData] = useState<IMenu[]>([]);
+    const [loading, setLoading] = useState(false); // // 用来控制加载状态
     const [form] = Form.useForm();
     useEffect(() => {
         getMenuData();
     }, []);
     // 获取菜单列表
     const getMenuData = async () => {
-        const data = await api.getMenuList(form.getFieldsValue());
-        setData(data);
+      setLoading(true);
+      const data = await api.getMenuList(form.getFieldsValue());
+      setData(data);
+      setLoading(false);
     };
     const columns: TableColumnsType<IMenu> = [
         {
@@ -160,7 +163,7 @@ export default function Menu() {
                         <Button onClick={handleCreate}>新增</Button>
                     </div>
                 </div>
-                <Table bordered rowKey="_id" columns={columns} dataSource={data} pagination={false} />
+                <Table bordered rowKey="_id" columns={columns} dataSource={data} pagination={false} loading={loading}/>
             </div>
             <CreateDept mref={menuRef} update={getMenuData} />
         </div>

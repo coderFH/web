@@ -3,8 +3,12 @@ import {
   ICreateUserParams,
   IDept,
   IDeptSearchParams,
+  ILineData,
   ILoginParams,
   IMenu,
+  IPieData,
+  IRadarData,
+  IReportData,
   ISearchParams,
   IUpdateMenuParams,
   IUpdateUserParams,
@@ -17,6 +21,17 @@ import request from '../utils/request';
 export default {
   login(params: ILoginParams) {
     return request.post('/users/login', params);
+  },
+  // 获取用户信息
+  getUserInfo() {
+    return request.get<IUser>('/users/getUserInfo');
+  },
+
+  // 获取权限列表
+  getPermissionList() {
+    return request.get<{ menuList: IMenu[]; buttonList: string[] }>(
+      '/users/getPermissionList'
+    );
   },
 
   // 获取用户列表
@@ -76,5 +91,22 @@ export default {
   // 删除菜单
   deleteMenu(params: { _id: string }) {
     return request.post('/menu/delete', params);
+  },
+
+  // dashboard 模块
+  getReportData() {
+    return request.get<IReportData>('/order/dashboard/getReportData');
+  },
+  getLineData() {
+    return request.get<ILineData>('/order/dashboard/getLineData');
+  },
+  getPieCityData() {
+    return request.get<IPieData>('/order/dashboard/getPieCityData');
+  },
+  getPieAgeData() {
+    return request.get<IPieData>('/order/dashboard/getPieAgeData');
+  },
+  getRadarData() {
+    return request.get<IRadarData>('/order/dashboard/getRadarData');
   },
 };

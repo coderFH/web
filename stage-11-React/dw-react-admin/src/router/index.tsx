@@ -1,45 +1,56 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Login from '../views/login';
-import Welcome from '../views/welcome';
 import NotFound from '../views/NotFound';
-import LayoutCon from '../layout';
-import Dashboard from '../views/dashboard';
-import User from '../views/user';
-import Depth from '../views/dept';
-import Role from '../views/role';
-import Menu from '../views/menu';
+import AuthLoader from './AuthLoader';
+import NotFound403 from '../views/403';
+import Layout from '../layout';
+import { lazyLoad } from './LazyLoad';
+import { lazy } from 'react';
 
-const router = createBrowserRouter([
+export const router = [
   {
-    element: <LayoutCon />,
-    children: [{
-      path: '/welcome',
-      element: <Welcome />,
-  },
-  {
-      path: '/dashboard',
-      element: <Dashboard />,
-  },
-  {
-      path: '/userList',
-      element: <User />,
-  },
-  {
-      path: '/deptList',
-      element: <Depth />,
-  },
-  {
-      path: '/menuList',
-      element: <Menu />,
-  },
-  {
-      path: '/roleList',
-      element: <Role />,
-  }],
+      id: 'layout',
+      element: <Layout />,
+      loader: AuthLoader,
+      children: [
+          {
+              path: '/welcome',
+              element: lazyLoad(lazy(() => import('../views/welcome'))),
+          },
+          {
+              path: '/dashboard',
+              element: lazyLoad(lazy(() => import('../views/dashboard'))),
+          },
+          {
+              path: '/userList',
+              element: lazyLoad(lazy(() => import('../views/user'))),
+              meta: {
+                  auth: true,
+              },
+          },
+          {
+              path: '/deptList',
+              element: lazyLoad(lazy(() => import('../views/dept'))),
+              meta: {
+                  requireAuth: true,
+                  auth: true,
+              },
+          },
+          {
+              path: '/menuList',
+              element: lazyLoad(lazy(() => import('../views/menu'))),
+          },
+          {
+              path: '/roleList',
+              element: lazyLoad(lazy(() => import('../views/role'))),
+          },
+      ],
   },
   { path: '/', element: <Navigate to="/welcome" /> },
   { path: '/login', element: <Login /> },
+  { path: '/403', element: <NotFound403 /> },
   { path: '*', element: <NotFound /> },
-]);
+];
 
-export default router;
+export default createBrowserRouter(router);
+
