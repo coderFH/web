@@ -8,9 +8,8 @@ interface BaseResponse<T = any> {
     data: T;
     status?: number | string;
 }
-
 const service = axios.create({
-    baseURL: import.meta.env.VITE_APP_USE_MOCK
+    baseURL: import.meta.env.VITE_APP_DEV_USE_MOCK
         ? import.meta.env.VITE_APP_MOCK_BASEURL
         : import.meta.env.VITE_APP_API_BASEURL,
     timeout: 15000
@@ -28,13 +27,13 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     (response: AxiosResponse) => {
         if (response.status === 200) {
-            return response.data;
+            return response;
         }
         ElMessage({
             message: getMessageInfo(response.status),
             type: 'error'
         });
-        return response.data;
+        return response;
     },
     // 请求失败
     (error: any) => {
@@ -71,7 +70,7 @@ const requestInstance = <T = any>(config: AxiosRequestConfig): Promise<T> => {
                     message: data.message,
                     type: 'success'
                 }); // 此处返回data信息 也就是 api 中配置好的 Response类型
-                resolve(data.data as T);
+                resolve(data as T);
             }
         });
     });
@@ -89,22 +88,3 @@ export function put<T = any, U = any>(config: AxiosRequestConfig, url: string, p
 export function del<T = any, U = any>(config: AxiosRequestConfig, url: string, data: U): Promise<T> {
     return requestInstance({ ...config, url, method: 'DELETE', data: data });
 }
-
-// 一般的后端返回的数据结构
-// {
-//     'code': 1,
-//     'message': '成功',
-//     'data': {
-//         'id': 1,
-//         'name': '张三',
-//         'age': 18,
-//         'sex': 1,
-//         'address': '北京市',
-//         'createTime': '2021-08-30 15:49:16',
-//         'updateTime': '2021-08-30 15:49:16',
-//         'deleteTime': null,
-//         'createBy': 1,
-//         'updateBy': 1,
-//     }
-
-// }
